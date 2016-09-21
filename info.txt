@@ -1,0 +1,15 @@
+Task information
+Topic: Spring MVC
+Task:
+1. Create web application with configured Spring MVC dispatcher servlet and application context.
+2. Create model beans and DAO layer for users and mentorship programs (make it as simple as possible, can be in-memory Map<Id, Bean> with sample data).
+3. Implement service layer for operating with the model above.
+4. Add controllers capable of creating domain objects, editing, getting by id, deleting and searching by simple criteria.
+5. Add View resolver and write simple front-end pages (JSP or FreeMarker or Velocity) to connect to controller logic.
+Criteria:
+- Your controllers should provide responses of various types: HTML pages and object-based (like JSON or XML)
+- Custom formatter for Date fields should be configured
+- Saving and editing must be accompanied with validation logic
+- Exception handler should be configured and redirect to error page or return proper error message depending on controller type
+- Remember about S.O.L.I.D. principles
+Tips:task assumes certain knowledge of Servlet API and Spring Core: you might need to review webinars and browse through some examples.
