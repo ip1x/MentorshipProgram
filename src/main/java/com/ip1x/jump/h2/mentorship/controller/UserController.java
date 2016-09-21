@@ -2,6 +2,7 @@ package com.ip1x.jump.h2.mentorship.controller;
 
 import com.ip1x.jump.h2.mentorship.entity.Level;
 import com.ip1x.jump.h2.mentorship.entity.User;
+import com.ip1x.jump.h2.mentorship.exception.UserNotFoundException;
 import com.ip1x.jump.h2.mentorship.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,10 @@ public class UserController {
     @RequestMapping(value = "/edit/{id:[\\d]+}", method = RequestMethod.GET)
     public ModelAndView showEditPageForUserById(@PathVariable("id") Long id) {
         ModelAndView model = new ModelAndView("editUser");
+        User user = userService.findById(id);
+        if(user == null){
+            throw new UserNotFoundException(id);
+        }
         model.addObject("user", userService.findById(id));
         model.addObject("levelOptions", Level.values());
         return model;
@@ -60,6 +65,10 @@ public class UserController {
     @RequestMapping(value ="/get/{id:[\\d]+}", method = RequestMethod.GET)
     public ModelAndView getUserById(@PathVariable("id") Long id) {
         ModelAndView model = new ModelAndView("users");
+        User user = userService.findById(id);
+        if(user == null){
+            throw new UserNotFoundException(id);
+        }
         model.addObject("user", userService.findById(id));
         return model;
     }
@@ -79,8 +88,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/delete/{id:[\\d]+}",method = RequestMethod.POST)
-    public String deleteUser(@ModelAttribute("user") User user) {
-        userService.delete(user);
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteById(id);
         return "redirect:/users/get/all";
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ModelAndView handleError(Exception ex) {
+        ModelAndView model = new ModelAndView("error");
+        model.addObject("message", ex.getMessage());
+        return model;
     }
 }

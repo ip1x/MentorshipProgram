@@ -32,4 +32,8 @@ public class ProgramService implements GeneralService<Program, Long> {
     public List<Program> findAll() {
         return programRepository.findAll();
     }
+
+    public void deleteById(Long id) {
+        programRepository.delete(id);
+    }
 }

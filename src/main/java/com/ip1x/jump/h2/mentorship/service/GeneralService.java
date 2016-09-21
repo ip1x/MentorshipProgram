@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface GeneralService<T, ID extends Serializable> {
-    public T save(T entity);
+    T save(T entity);
 
-    public void delete(T entity);
+    void delete(T entity);
 
-    public T findById(ID entityId);
+    T findById(ID entityId);
 
-    public List<T> findAll();
+    List<T> findAll();
+
+    void deleteById(Long id);
 
 }

@@ -33,7 +33,7 @@
                     <td align="left"><c:out value="${user.level}" /></td>
                     <td align="left"><c:out value="${user.primarySkill}" /></td>
                     <td align="left"><a href="${editUrl}">Edit</a></td>
-                    <td align="left"><form:form modelAttribute="user" method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
+                    <td align="left"><form:form method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -64,7 +64,7 @@
                     <td align="left"><c:out value="${user.level}" /></td>
                     <td align="left"><c:out value="${user.primarySkill}" /></td>
                     <td align="left"><a href="${editUrl}">Edit</a></td>
-                    <td align="left"><form:form modelAttribute="user" method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
+                    <td align="left"><form:form method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
                 </tr>
             </tbody>
         </table>

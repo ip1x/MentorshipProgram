@@ -32,4 +32,6 @@ public class UserService implements GeneralService<User, Long> {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    public void deleteById(Long id){ userRepository.delete(id);}
 }
