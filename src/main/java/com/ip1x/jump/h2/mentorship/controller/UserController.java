@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDate;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -22,29 +23,36 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String showUserPage(Model model){
-        model.addAttribute("mode", "add");
         model.addAttribute("user", new User());
-        return "users";
+        model.addAttribute("levelOptions", Level.values());
+        return "createUser";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView("users");
+        if(bindingResult.hasErrors()){
+            return "createUser";
+        }
         userService.save(user);
         return "redirect:/users/get/all";
     }
 
     @RequestMapping(value = "/edit/{id:[\\d]+}", method = RequestMethod.GET)
     public ModelAndView showEditPageForUserById(@PathVariable("id") Long id) {
-        ModelAndView model = new ModelAndView("users");
-        model.addObject("mode", "edit");
+        ModelAndView model = new ModelAndView("editUser");
         model.addObject("user", userService.findById(id));
+        model.addObject("levelOptions", Level.values());
         return model;
     }
 
     @RequestMapping(value = "/edit/{id:[\\d]+}", method = RequestMethod.POST)
-    public String editUserById(@ModelAttribute("user") User user) {
+    public String editUserById(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView("users");
+        if(bindingResult.hasErrors()){
+            model.addObject("user", userService.findById(user.getId()));
+            return "editUser";
+        }
         userService.save(user);
         return "redirect:/users/get/all";
     }
@@ -67,7 +75,6 @@ public class UserController {
     @RequestMapping("/get/all")
     public String getAllUsers(Model model){
         model.addAttribute("users", userService.findAll());
-        userService.save(new User("1","1", Level.D1,"java", LocalDate.of(1996,04,12)));
         return "users";
     }
 

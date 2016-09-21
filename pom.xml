@@ -17,6 +17,7 @@
         <jstl-version>1.2</jstl-version>
         <hikari-cp-version>2.5.0</hikari-cp-version>
         <hb-manager-version>5.1.0.Final</hb-manager-version>
+        <javax-validation-version>5.0.1.Final</javax-validation-version>
     </properties>
 
     <dependencies>
@@ -48,6 +49,13 @@
             <version>${spring-data-jpa-version}</version>
         </dependency>
 
+        <!-- Hibernatge validation -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.0.1.Final</version>
+        </dependency>
+
         <!-- Jackson JSON Mapper -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
@@ -68,8 +76,6 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>RELEASE</version>
         </dependency>
-
-
 
         <!-- Spring JDBC -->
         <dependency>

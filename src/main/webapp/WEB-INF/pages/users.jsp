@@ -7,65 +7,7 @@
 </head>
 <body>
 <c:choose>
-    <c:when test="${mode == 'add'}">
-        <h1>Create New User</h1>
-        <c:url var="saveUrl" value="/users/add" />
-        <form:form modelAttribute="user" method="POST" action="${saveUrl}">
-            <table>
-                <tr>
-                    <td><form:label path="name">Name:</form:label></td>
-                    <td><form:input path="name"/></td>
-                </tr>
-
-                <tr>
-                    <td><form:label path="email">Email</form:label></td>
-                    <td><form:input path="email"/></td>
-                </tr>
-
-                <tr>
-                    <td><form:label path="level">Level</form:label></td>
-                    <td><form:input path="level"/></td>
-                </tr>
-
-                <tr>
-                    <td><form:label path="primarySkill">Primary skill</form:label></td>
-                    <td><form:input path="primarySkill"/></td>
-                </tr>
-            </table>
-
-            <input type="submit" value="Save" />
-        </form:form>
-    </c:when>
-    <c:when test="${mode == 'edit'}">
-        <h1>Edit User</h1>
-        <c:url var="editUrl" value="/users/edit/${user.id}" />
-        <form:form modelAttribute="user" method="POST" action="${editUrl}">
-            <table>
-                <tr>
-                    <td><form:label path="name">Name:</form:label></td>
-                    <td><form:input path="name"/></td>
-                </tr>
-
-                <tr>
-                    <td><form:label path="email">Email</form:label></td>
-                    <td><form:input path="email"/></td>
-                </tr>
-
-                <tr>
-                    <td><form:label path="level">Level</form:label></td>
-                    <td><form:input path="level"/></td>
-                </tr>
-
-                <tr>
-                    <td><form:label path="primarySkill">Primary skill</form:label></td>
-                    <td><form:input path="primarySkill"/></td>
-                </tr>
-            </table>
-
-            <input type="submit" value="Save" />
-        </form:form>
-    </c:when>
-    <c:otherwise>
+    <c:when test="${users != null}">
         <h1>Users</h1>
 
         <a href="/users/add">Add</a>
@@ -85,18 +27,48 @@
                 <c:url var="editUrl" value="/users/edit/${user.id}" />
                 <c:url var="deleteUrl" value="/users/delete/${user.id}" />
                 <tr>
-                    <td><c:out value="${user.id}" /></td>
-                    <td><c:out value="${user.name}" /></td>
-                    <td><c:out value="${user.email}" /></td>
-                    <td><c:out value="${user.level}" /></td>
-                    <td><c:out value="${user.primarySkill}" /></td>
-                    <td><a href="${editUrl}">Edit</a></td>
-                    <td><form:form modelAttribute="user" method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
+                    <td align="left"><c:out value="${user.id}" /></td>
+                    <td align="left"><c:out value="${user.name}" /></td>
+                    <td align="left"><c:out value="${user.email}" /></td>
+                    <td align="left"><c:out value="${user.level}" /></td>
+                    <td align="left"><c:out value="${user.primarySkill}" /></td>
+                    <td align="left"><a href="${editUrl}">Edit</a></td>
+                    <td align="left"><form:form modelAttribute="user" method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-    </c:otherwise>
+    </c:when>
+    <c:when test="${user != null}">
+        <h1>User</h1>
+
+        <a href="/users/get/all">View all users</a>
+        <table style="border: 1px solid; width: 500px; text-align:center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Level</th>
+                <th>Primary Skill</th>
+                <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <c:url var="editUrl" value="/users/edit/${user.id}" />
+                <c:url var="deleteUrl" value="/users/delete/${user.id}" />
+                <tr>
+                    <td align="left"><c:out value="${user.id}" /></td>
+                    <td align="left"><c:out value="${user.name}" /></td>
+                    <td align="left"><c:out value="${user.email}" /></td>
+                    <td align="left"><c:out value="${user.level}" /></td>
+                    <td align="left"><c:out value="${user.primarySkill}" /></td>
+                    <td align="left"><a href="${editUrl}">Edit</a></td>
+                    <td align="left"><form:form modelAttribute="user" method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
+                </tr>
+            </tbody>
+        </table>
+    </c:when>
 </c:choose>
 </body>
 </html>

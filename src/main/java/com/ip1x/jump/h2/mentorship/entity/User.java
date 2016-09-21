@@ -1,8 +1,12 @@
 package com.ip1x.jump.h2.mentorship.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 
@@ -14,14 +18,23 @@ public class User {
     @GenericGenerator(name="increment", strategy = "increment")
     @Column(nullable = false)
     private Long id;
+
     @Column
+    @Size(max = 64, message = "Max available name's length is 64 characters")
+    @NotEmpty(message = "Please enter your name.")
     private String name;
+
+    @NotEmpty(message = "Please enter your email.")
+    @Email
     @Column(nullable = false)
     private String email;
+
     @Enumerated(EnumType.STRING)
     private Level level;
+
     @Column(name="primary_skill")
     private String primarySkill;
+
     @Column(name="birth_day")
     private LocalDate birthDay;
 
