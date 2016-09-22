@@ -33,6 +33,11 @@
                 <td align="left"><form:label path="primarySkill">Primary skill</form:label></td>
                 <td align="left"><form:input path="primarySkill"/></td>
             </tr>
+
+            <tr>
+                <td align="left"><form:label path="birthDay">Birthday</form:label></td>
+                <td align="left"><form:input path="birthDay" type="date" /></td>
+            </tr>
         </table>
 
         <input type="submit" value="Save" />
