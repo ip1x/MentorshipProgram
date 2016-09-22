@@ -1,9 +1,12 @@
 package com.ip1x.jump.h2.mentorship.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name="program")
@@ -13,14 +16,23 @@ public class Program {
     @GenericGenerator(name="increment", strategy = "increment")
     @Column(nullable = false)
     private Long id;
+
     @Column
+    @Size(min = 10, max = 64, message = "Name's length has to be between 10 and 64 characters")
+    @NotEmpty(message = "Please enter program name.")
     private String name;
+
     @Column(name="office_location")
     private String officeLocation;
+
     @Column(name="start_date")
     private LocalDate startDate;
+
     @Column(name="end_date")
     private LocalDate endDate;
+
+    @ManyToMany(mappedBy = "programs")
+    private Set<User> users;
 
     public Program() {
     }
@@ -71,6 +83,18 @@ public class Program {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public boolean addUser(User user){
+        return this.users.add(user);
     }
 
     @Override

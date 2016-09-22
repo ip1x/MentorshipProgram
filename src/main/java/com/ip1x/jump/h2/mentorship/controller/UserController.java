@@ -2,7 +2,7 @@ package com.ip1x.jump.h2.mentorship.controller;
 
 import com.ip1x.jump.h2.mentorship.entity.Level;
 import com.ip1x.jump.h2.mentorship.entity.User;
-import com.ip1x.jump.h2.mentorship.exception.UserNotFoundException;
+import com.ip1x.jump.h2.mentorship.exception.ResponseNotFoundException;
 import com.ip1x.jump.h2.mentorship.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +44,7 @@ public class UserController {
         ModelAndView model = new ModelAndView("editUser");
         User user = userService.findById(id);
         if(user == null){
-            throw new UserNotFoundException(id);
+            throw new ResponseNotFoundException("User with id=" + id + " doesn't exist");
         }
         model.addObject("user", userService.findById(id));
         model.addObject("levelOptions", Level.values());
@@ -67,7 +67,7 @@ public class UserController {
         ModelAndView model = new ModelAndView("users");
         User user = userService.findById(id);
         if(user == null){
-            throw new UserNotFoundException(id);
+            throw new ResponseNotFoundException("User with id=" + id + " doesn't exist");
         }
         model.addObject("user", userService.findById(id));
         return model;
@@ -93,7 +93,7 @@ public class UserController {
         return "redirect:/users/get/all";
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler(ResponseNotFoundException.class)
     public ModelAndView handleError(Exception ex) {
         ModelAndView model = new ModelAndView("error");
         model.addObject("message", ex.getMessage());

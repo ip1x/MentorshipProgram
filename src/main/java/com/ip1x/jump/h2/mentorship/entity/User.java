@@ -3,11 +3,13 @@ package com.ip1x.jump.h2.mentorship.entity;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Set;
 
 
 @Entity
@@ -37,6 +39,11 @@ public class User {
 
     @Column(name="birth_day")
     private LocalDate birthDay;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "program_user", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "program_id", referencedColumnName = "id"))
+    private Set<Program> programs;
 
     public User() {
     }
@@ -95,6 +102,14 @@ public class User {
 
     public void setBirthDay(LocalDate birthDay) {
         this.birthDay = birthDay;
+    }
+
+    public Set<Program> getPrograms() {
+        return programs;
+    }
+
+    public  boolean addProgram(Program program){
+        return this.programs.add(program);
     }
 
     @Override
