@@ -31,7 +31,7 @@ public class Program {
     @Column(name="end_date")
     private LocalDate endDate;
 
-    @ManyToMany(mappedBy = "programs")
+    @ManyToMany(mappedBy = "programs", fetch = FetchType.LAZY)
     private Set<User> users;
 
     public Program() {

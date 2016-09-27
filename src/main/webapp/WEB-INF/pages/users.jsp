@@ -35,7 +35,7 @@
                     <td align="left"><c:out value="${user.primarySkill}" /></td>
                     <td align="left"><c:out value="${user.birthDay}" /></td>
                     <td align="left"><a href="${editUrl}">Edit</a></td>
-                    <td align="left"><form:form method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
+                    <td align="left"><form:form method="post" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
                 </tr>
             </c:forEach>
             </tbody>
