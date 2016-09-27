@@ -1,5 +1,6 @@
 package com.ip1x.jump.h2.mentorship.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -40,7 +41,8 @@ public class User {
     @Column(name="birth_day")
     private LocalDate birthDay;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "program_user", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "program_id", referencedColumnName = "id"))
     private Set<Program> programs;
