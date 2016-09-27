@@ -14,11 +14,12 @@
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Level</th>
-                <th>Primary Skill</th>
+                <th align="left">ID</th>
+                <th align="left">Name</th>
+                <th align="left">Email</th>
+                <th align="left">Level</th>
+                <th align="left">Primary Skill</th>
+                <th align="left">Birthday</th>
                 <th colspan="2"></th>
             </tr>
             </thead>
@@ -32,6 +33,7 @@
                     <td align="left"><c:out value="${user.email}" /></td>
                     <td align="left"><c:out value="${user.level}" /></td>
                     <td align="left"><c:out value="${user.primarySkill}" /></td>
+                    <td align="left"><c:out value="${user.birthDay}" /></td>
                     <td align="left"><a href="${editUrl}">Edit</a></td>
                     <td align="left"><form:form method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
                 </tr>
@@ -46,11 +48,11 @@
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Level</th>
-                <th>Primary Skill</th>
+                <th align="left">ID</th>
+                <th align="left">Name</th>
+                <th align="left">Email</th>
+                <th align="left">Level</th>
+                <th align="left">Primary Skill</th>
                 <th colspan="2"></th>
             </tr>
             </thead>

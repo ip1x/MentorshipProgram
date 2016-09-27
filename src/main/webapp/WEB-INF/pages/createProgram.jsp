@@ -20,6 +20,16 @@
             <td align="left"><form:label path="officeLocation">Office location</form:label></td>
             <td align="left"><form:input path="officeLocation"/></td>
         </tr>
+
+        <tr>
+            <td align="left"><form:label path="startDate">Start date</form:label></td>
+            <td align="left"><form:input path="startDate" type="date" /></td>
+        </tr>
+
+        <tr>
+            <td align="left"><form:label path="endDate">End date</form:label></td>
+            <td align="left"><form:input path="endDate" type="date" /></td>
+        </tr>
     </table>
 
     <input type="submit" value="Save" />
@@ -28,11 +38,11 @@
 <table style="border: 1px solid; width: 500px; text-align:center">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Level</th>
-        <th>Primary Skill</th>
+        <th align="left">>ID</th>
+        <th align="left">Name</th>
+        <th align="left">Email</th>
+        <th align="left">Level</th>
+        <th align="left">Primary Skill</th>
         <th colspan="2"></th>
     </tr>
     </thead>

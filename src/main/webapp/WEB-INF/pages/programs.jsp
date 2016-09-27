@@ -14,9 +14,11 @@
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Office location</th>
+                <th align="left">ID</th>
+                <th align="left">Name</th>
+                <th align="left">Office location</th>
+                <th align="left">Start date</th>
+                <th align="left">End date</th>
                 <th colspan="2"></th>
             </tr>
             </thead>
@@ -28,6 +30,8 @@
                     <td align="left"><c:out value="${program.id}" /></td>
                     <td align="left"><c:out value="${program.name}" /></td>
                     <td align="left"><c:out value="${program.officeLocation}" /></td>
+                    <td align="left"><c:out value="${program.startDate}" /></td>
+                    <td align="left"><c:out value="${program.endDate}" /></td>
                     <td align="left"><a href="${editUrl}">Edit</a></td>
                     <td align="left"><form:form method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
                 </tr>
@@ -42,9 +46,9 @@
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Office location</th>
+                <th align="left">ID</th>
+                <th align="left">Name</th>
+                <th align="left">Office location</th>
                 <th colspan="2"></th>
             </tr>
             </thead>
