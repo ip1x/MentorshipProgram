@@ -12,7 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -87,10 +89,11 @@ public class UserController {
         return "users";
     }
 
-    @RequestMapping(value = "/delete/{id:[\\d]+}",method = RequestMethod.POST)
-    public String deleteUser(@PathVariable("id") Long id) {
+    @RequestMapping(value = "/delete/{id:[\\d]+}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteUser(@PathVariable("id") Long id, HttpServletResponse response) throws IOException {
         userService.deleteById(id);
-        return "redirect:/users/get/all";
+        response.sendRedirect("/users/get/all");
     }
 
     @ExceptionHandler(ResponseNotFoundException.class)

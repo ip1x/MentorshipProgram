@@ -5,6 +5,24 @@
 <head>
     <title>Users</title>
 </head>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    var RestDelete = function(deleteUrl) {
+        $.ajax({
+            type: 'DELETE',
+            url:  deleteUrl,
+            async: true,
+            success: function(result) {
+                alert("Ok");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error: ' + jqXHR.status + ' ' + jqXHR.responseText);
+            }
+        });
+    }
+</script>
+
 <body>
 <c:choose>
     <c:when test="${users != null}">
@@ -35,7 +53,7 @@
                     <td align="left"><c:out value="${user.primarySkill}" /></td>
                     <td align="left"><c:out value="${user.birthDay}" /></td>
                     <td align="left"><a href="${editUrl}">Edit</a></td>
-                    <td align="left"><form:form method="post" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
+                    <td><button type="button" onclick="RestDelete('${deleteUrl}')">Delete</button></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -66,7 +84,7 @@
                     <td align="left"><c:out value="${user.level}" /></td>
                     <td align="left"><c:out value="${user.primarySkill}" /></td>
                     <td align="left"><a href="${editUrl}">Edit</a></td>
-                    <td align="left"><form:form method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
+                    <td><button type="button" onclick="RestDelete(${deleteUrl})">Delete</button></td>
                 </tr>
             </tbody>
         </table>
