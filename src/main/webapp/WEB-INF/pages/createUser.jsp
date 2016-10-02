@@ -39,6 +39,7 @@
             <tr>
                 <td align="left"><form:label path="birthDay">Birthday</form:label></td>
                 <td align="left"><form:input path="birthDay" type="date" /></td>
+                <td align="left"><form:errors path="birthDay" cssClass="error" /></td>
             </tr>
         </table>
 
