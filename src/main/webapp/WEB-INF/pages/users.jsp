@@ -14,6 +14,7 @@
             url:  deleteUrl,
             async: true,
             success: function(result) {
+                location.reload();
                 alert("Ok");
             },
             error: function(jqXHR, textStatus, errorThrown) {
