@@ -4,6 +4,7 @@ import com.ip1x.jump.h2.mentorship.util.LocalDateConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -15,8 +16,10 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
+@EnableAspectJAutoProxy
 @ComponentScan("com.ip1x.jump.h2.mentorship")
 public class WebConfig extends WebMvcConfigurerAdapter {
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/WEB-INF/pages/**").addResourceLocations("/pages/");

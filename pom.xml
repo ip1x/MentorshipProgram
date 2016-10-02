@@ -19,7 +19,7 @@
         <hb-manager-version>5.1.0.Final</hb-manager-version>
         <javax-validation-version>1.1.0.Final</javax-validation-version>
         <hibernate-validator-version>5.0.1.Final</hibernate-validator-version>
-
+        <aspectj-version>1.8.8</aspectj-version>
     </properties>
 
     <dependencies>
@@ -97,6 +97,25 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${dbh2-version}</version>
+        </dependency>
+
+        <!-- Spring AOP + AspectJ -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj-version}</version>
         </dependency>
 
         <dependency>

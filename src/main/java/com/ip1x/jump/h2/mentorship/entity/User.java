@@ -3,10 +3,8 @@ package com.ip1x.jump.h2.mentorship.entity;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Set;
@@ -39,6 +37,18 @@ public class User {
 
     @Column(name="birth_day")
     private LocalDate birthDay;
+
+    @Column(name="create_date")
+    private LocalDate createDate;
+
+    @Column(name="created_by_user_with_ip")
+    private String createdByUserWithIp;
+
+    @Column(name="modify_date")
+    private LocalDate modifyDate;
+
+    @Column(name="modified_by_user_with_ip")
+    private String modifiedByUserWithIp;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "program_user", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -104,8 +114,44 @@ public class User {
         this.birthDay = birthDay;
     }
 
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getCreatedByUserWithIp() {
+        return createdByUserWithIp;
+    }
+
+    public void setCreatedByUserWithIp(String createdByUserWithIp) {
+        this.createdByUserWithIp = createdByUserWithIp;
+    }
+
+    public LocalDate getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(LocalDate modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public String getModifiedByUserWithIp() {
+        return modifiedByUserWithIp;
+    }
+
+    public void setModifiedByUserWithIp(String modifiedByUserWithIp) {
+        this.modifiedByUserWithIp = modifiedByUserWithIp;
+    }
+
     public Set<Program> getPrograms() {
         return programs;
+    }
+
+    public void setPrograms(Set<Program> programs) {
+        this.programs = programs;
     }
 
     public  boolean addProgram(Program program){

@@ -20,6 +20,10 @@
                 <th align="left">Level</th>
                 <th align="left">Primary Skill</th>
                 <th align="left">Birthday</th>
+                <th align="left">Create date</th>
+                <th align="left">Created by</th>
+                <th align="left">Modify date</th>
+                <th align="left">Modified by</th>
                 <th colspan="2"></th>
             </tr>
             </thead>
@@ -34,6 +38,10 @@
                     <td align="left"><c:out value="${user.level}" /></td>
                     <td align="left"><c:out value="${user.primarySkill}" /></td>
                     <td align="left"><c:out value="${user.birthDay}" /></td>
+                    <td align="left"><c:out value="${user.createDate}" /></td>
+                    <td align="left"><c:out value="${user.createdByUserWithIp}" /></td>
+                    <td align="left"><c:out value="${user.modifyDate}" /></td>
+                    <td align="left"><c:out value="${user.modifiedByUserWithIp}" /></td>
                     <td align="left"><a href="${editUrl}">Edit</a></td>
                     <td align="left"><form:form method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
                 </tr>
@@ -53,6 +61,11 @@
                 <th align="left">Email</th>
                 <th align="left">Level</th>
                 <th align="left">Primary Skill</th>
+                <th align="left">Birthday</th>
+                <th align="left">Create date</th>
+                <th align="left">Created by</th>
+                <th align="left">Modify date</th>
+                <th align="left">Modified by</th>
                 <th colspan="2"></th>
             </tr>
             </thead>
@@ -65,6 +78,11 @@
                     <td align="left"><c:out value="${user.email}" /></td>
                     <td align="left"><c:out value="${user.level}" /></td>
                     <td align="left"><c:out value="${user.primarySkill}" /></td>
+                    <td align="left"><c:out value="${user.birthDay}" /></td>
+                    <td align="left"><c:out value="${user.createDate}" /></td>
+                    <td align="left"><c:out value="${user.createdByUserWithIp}" /></td>
+                    <td align="left"><c:out value="${user.modifyDate}" /></td>
+                    <td align="left"><c:out value="${user.modifiedByUserWithIp}" /></td>
                     <td align="left"><a href="${editUrl}">Edit</a></td>
                     <td align="left"><form:form method="POST" action="${deleteUrl}"><input type="submit" value="Delete" /></form:form></td>
                 </tr>

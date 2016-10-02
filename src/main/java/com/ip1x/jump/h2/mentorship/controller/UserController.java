@@ -52,7 +52,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit/{id:[\\d]+}", method = RequestMethod.POST)
-    public String editUserById(@Valid User user, BindingResult bindingResult) {
+    public String editUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView("users");
         if(bindingResult.hasErrors()){
             model.addObject("user", userService.findById(user.getId()));
