@@ -20,6 +20,7 @@
         <javax-validation-version>1.1.0.Final</javax-validation-version>
         <hibernate-validator-version>5.0.1.Final</hibernate-validator-version>
         <aspectj-version>1.8.8</aspectj-version>
+        <log4j-version>1.2.17</log4j-version>
     </properties>
 
     <dependencies>
@@ -139,6 +140,12 @@
             <version>${hikari-cp-version}</version>
         </dependency>
 
+        <!-- Log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>
     </dependencies>
 
     <build>
