@@ -11,12 +11,21 @@ public class LoggingAspect {
 
     static final Logger logger = Logger.getLogger(LoggingAspect.class);
 
+    @Before("execution(* com.ip1x.jump.h2.mentorship.dao..*.*(..))")
+    public void beforeMethodInDAO(JoinPoint joinPoint){
+        StringBuilder message = new StringBuilder();
+        message.append(joinPoint.getTarget().getClass().getName()).append(".");
+        message.append(joinPoint.getSignature().getName());
+        logger.info(message.toString());
+    }
+
+
     @Pointcut("within(com.ip1x.jump.h2.mentorship.controller.*)")
     public void inController() {}
 
     @Before("inController()")
     public void beforeControllerMethods(JoinPoint joinPoint){
-        System.out.println("before : " + joinPoint.getSignature().getName());
+        logger.info("before : " + joinPoint.getSignature().getName());
     }
 
     @AfterThrowing(pointcut = "inController()", throwing = "ex")
@@ -28,9 +37,9 @@ public class LoggingAspect {
             pointcut = "inController()",
             returning= "result")
     public void afterReturningSavingAndEditingResults(JoinPoint joinPoint, Object result) {
-        System.out.println("after returning : " + joinPoint.getSignature().getName());
+        logger.info("after returning : " + joinPoint.getSignature().getName());
         if(result!=null) {
-            System.out.println("Method returned value is : " + result.toString());
+            logger.info("Method returned value is : " + result.toString());
         }
     }
 }
