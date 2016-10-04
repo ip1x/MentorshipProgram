@@ -1,7 +1,7 @@
 package com.ip1x.jump.h2.mentorship.service.impl;
 
 import com.ip1x.jump.h2.mentorship.dao.ProgramRepository;
-import com.ip1x.jump.h2.mentorship.entity.Program;
+import com.ip1x.jump.h2.mentorship.model.Program;
 import com.ip1x.jump.h2.mentorship.service.GeneralService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

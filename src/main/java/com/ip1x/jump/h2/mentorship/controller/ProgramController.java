@@ -1,6 +1,6 @@
 package com.ip1x.jump.h2.mentorship.controller;
 
-import com.ip1x.jump.h2.mentorship.entity.Program;
+import com.ip1x.jump.h2.mentorship.model.Program;
 import com.ip1x.jump.h2.mentorship.exception.ResponseNotFoundException;
 import com.ip1x.jump.h2.mentorship.service.impl.ProgramService;
 import com.ip1x.jump.h2.mentorship.service.impl.UserService;

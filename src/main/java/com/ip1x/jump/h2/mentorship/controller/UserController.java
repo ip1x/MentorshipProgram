@@ -1,7 +1,7 @@
 package com.ip1x.jump.h2.mentorship.controller;
 
-import com.ip1x.jump.h2.mentorship.entity.Level;
-import com.ip1x.jump.h2.mentorship.entity.User;
+import com.ip1x.jump.h2.mentorship.model.Level;
+import com.ip1x.jump.h2.mentorship.model.User;
 import com.ip1x.jump.h2.mentorship.exception.ResponseNotFoundException;
 import com.ip1x.jump.h2.mentorship.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class UserController {
         if(user == null){
             throw new ResponseNotFoundException("User with id=" + id + " doesn't exist");
         }
-        model.addObject("user", userService.findById(id));
+        model.addObject("user", user);
         model.addObject("levelOptions", Level.values());
         return model;
     }

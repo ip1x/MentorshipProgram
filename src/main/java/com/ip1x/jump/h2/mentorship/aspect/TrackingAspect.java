@@ -1,6 +1,6 @@
 package com.ip1x.jump.h2.mentorship.aspect;
 
-import com.ip1x.jump.h2.mentorship.entity.User;
+import com.ip1x.jump.h2.mentorship.model.User;
 import com.ip1x.jump.h2.mentorship.service.impl.UserService;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;

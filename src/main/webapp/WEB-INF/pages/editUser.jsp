@@ -8,7 +8,7 @@
 <body>
     <h1>Edit User</h1>
     <c:url var="editUrl" value="/users/edit/${user.id}" />
-    <form:form commandName="user" method="POST" action="${editUrl}">@
+    <form:form commandName="user" method="POST" action="${editUrl}">
         <table>
             <tr>
                 <td align="left"><form:label path="name">Name:</form:label></td>
@@ -36,7 +36,7 @@
 
             <tr>
                 <td align="left"><form:label path="birthDay">Birthday</form:label></td>
-                <td align="left"><form:input path="birthDay" type="date" /></td>
+                <td align="left"><input name="birthDay" value="${user.birthDay}" type="date" /></td>
                 <td align="left"><form:errors path="birthDay" cssClass="error" /></td>
             </tr>
         </table>
