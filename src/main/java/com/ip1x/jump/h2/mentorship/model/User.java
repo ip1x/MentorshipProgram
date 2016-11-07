@@ -2,17 +2,19 @@ package com.ip1x.jump.h2.mentorship.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 
 @Entity
-@Table(name="user")
+@Table(name="User")
 public class User {
     @Id
     @GeneratedValue(generator = "increment")
@@ -36,26 +38,38 @@ public class User {
     @Column(name="primary_skill")
     private String primarySkill;
 
+    @Column(name="is_mentor")
+    private Boolean isMentor;
+
+    @Type(type = "java.time.LocalDate")
     @Column(name="birth_day")
     private LocalDate birthDay;
 
+    @Type(type = "java.time.LocalDate")
     @Column(name="create_date")
     private LocalDate createDate;
 
     @Column(name="created_by_user_with_ip")
     private String createdByUserWithIp;
 
+    @Type(type = "java.time.LocalDate")
     @Column(name="modify_date")
     private LocalDate modifyDate;
 
     @Column(name="modified_by_user_with_ip")
     private String modifiedByUserWithIp;
-    
+
     @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "program_user", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "program_id", referencedColumnName = "id"))
     private Set<Program> programs;
+
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    private User mentor;
+
+    @OneToMany(mappedBy = "mentor", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    private List<User> mentees;
 
     public User() {
     }
@@ -66,6 +80,12 @@ public class User {
         this.level = level;
         this.primarySkill = primarySkill;
         this.birthDay = birthDay;
+    }
+
+    @PreRemove
+    private void removeFromMentor() {
+        mentees.forEach(mentee -> mentee.mentor = null);
+        mentees.clear();
     }
 
     public Long getId() {
@@ -106,6 +126,14 @@ public class User {
 
     public void setPrimarySkill(String primarySkill) {
         this.primarySkill = primarySkill;
+    }
+
+    public Boolean getIsMentor() {
+        return isMentor;
+    }
+
+    public void setIsMentor(Boolean isMentor) {
+        this.isMentor = isMentor;
     }
 
     public LocalDate getBirthDay() {
@@ -158,6 +186,22 @@ public class User {
 
     public  boolean addProgram(Program program){
         return this.programs.add(program);
+    }
+
+    public User getMentor() {
+        return mentor;
+    }
+
+    public void setMentor(User mentor) {
+        this.mentor = mentor;
+    }
+
+    public List<User> getMentees() {
+        return mentees;
+    }
+
+    public void setMentees(List<User> mentees) {
+        this.mentees = mentees;
     }
 
     @Override

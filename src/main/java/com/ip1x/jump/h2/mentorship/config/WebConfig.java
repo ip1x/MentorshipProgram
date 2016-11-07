@@ -1,6 +1,8 @@
 package com.ip1x.jump.h2.mentorship.config;
 
+import com.ip1x.jump.h2.mentorship.util.IdToUserConverter;
 import com.ip1x.jump.h2.mentorship.util.LocalDateConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +21,9 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableAspectJAutoProxy
 @ComponentScan("com.ip1x.jump.h2.mentorship")
 public class WebConfig extends WebMvcConfigurerAdapter {
+
+    @Autowired
+    IdToUserConverter idToUserConverter;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -41,6 +46,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new LocalDateConverter());
+        registry.addConverter(idToUserConverter);
     }
 
     @Bean

@@ -35,6 +35,21 @@
             </tr>
 
             <tr>
+                <td align="left"><form:label path="isMentor">Is mentor</form:label></td>
+                <td align="left"><form:checkbox path="isMentor"/></td>
+            </tr>
+
+            <tr>
+                <td>Mentor</td>
+                <td>
+                    <form:select path="mentor">
+                        <form:option value="" label="none"/>
+                        <form:options itemValue="id" itemLabel="name" items="${mentors}"/>
+                    </form:select>
+                </td>
+            </tr>
+
+            <tr>
                 <td align="left"><form:label path="birthDay">Birthday</form:label></td>
                 <td align="left"><input name="birthDay" value="${user.birthDay}" type="date" /></td>
                 <td align="left"><form:errors path="birthDay" cssClass="error" /></td>

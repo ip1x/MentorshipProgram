@@ -7,7 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/welcome")
+@RequestMapping(value = {"/welcome","/",""})
 public class WelcomeController {
 
     @Autowired

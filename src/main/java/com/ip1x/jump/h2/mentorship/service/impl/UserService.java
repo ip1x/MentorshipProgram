@@ -33,5 +33,11 @@ public class UserService implements GeneralService<User, Long> {
         return userRepository.findAll();
     }
 
+    public List<User> findMentorsWithMoreThan2Mentees() { return  userRepository.findMentorsWithMoreThan2Mentees(); }
+
+    public List<User> findUsersWithoutMentor() { return  userRepository.findUsersWithoutMentor();}
+
+    public List<User> findMentors() { return  userRepository.findMentors();}
+
     public void deleteById(Long id){ userRepository.delete(id);}
 }

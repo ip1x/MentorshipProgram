@@ -50,6 +50,7 @@ public class UserController {
         }
         model.addObject("user", user);
         model.addObject("levelOptions", Level.values());
+        model.addObject("mentors", userService.findMentors());
         return model;
     }
 
@@ -58,10 +59,23 @@ public class UserController {
         ModelAndView model = new ModelAndView("users");
         if(bindingResult.hasErrors()){
             model.addObject("user", userService.findById(user.getId()));
+            model.addObject("mentors", userService.findMentors());
             return "editUser";
         }
         userService.save(user);
         return "redirect:/users/get/all";
+    }
+
+    @RequestMapping(value ="/get/users-without-mentor")
+    public  String getUsersWithoutMentor(Model model){
+        model.addAttribute("users", userService.findUsersWithoutMentor());
+        return "freeUsers";
+    }
+
+    @RequestMapping(value ="/get/mentors-with-more-that-two-mentees")
+    public  String getMentorsWithMoreThan2Mentees(Model model){
+        model.addAttribute("users", userService.findMentorsWithMoreThan2Mentees());
+        return "freeUsers";
     }
 
     @RequestMapping(value ="/get/{id:[\\d]+}", method = RequestMethod.GET)

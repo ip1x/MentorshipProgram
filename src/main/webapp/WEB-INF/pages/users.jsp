@@ -29,7 +29,13 @@
     <c:when test="${users != null}">
         <h1>Users</h1>
 
-        <a href="/users/add">Add</a>
+        <a href="/welcome">Go on home page</a>
+        <br/>
+        <a href="/users/get/users-without-mentor">Get list of users without mentor</a>
+        <br/>
+        <a href="/users/get/mentors-with-more-that-two-mentees">Get mentors with more that 2 mentees</a>
+        <br/>
+        <a href="/users/add">Add user</a>
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead>
             <tr>
@@ -38,6 +44,8 @@
                 <th align="left">Email</th>
                 <th align="left">Level</th>
                 <th align="left">Primary Skill</th>
+                <th align="left">Is mentor</th>
+                <th align="left">Mentor</th>
                 <th align="left">Birthday</th>
                 <th align="left">Create date</th>
                 <th align="left">Created by</th>
@@ -50,12 +58,21 @@
             <c:forEach items="${users}" var="user">
                 <c:url var="editUrl" value="/users/edit/${user.id}" />
                 <c:url var="deleteUrl" value="/users/delete/${user.id}" />
+                <c:if test="${not empty user.mentor}">
+                    <c:url var="mentorUrl" value="/users/get/${user.mentor.id}" />
+                </c:if>
                 <tr>
                     <td align="left"><c:out value="${user.id}" /></td>
                     <td align="left"><c:out value="${user.name}" /></td>
                     <td align="left"><c:out value="${user.email}" /></td>
                     <td align="left"><c:out value="${user.level}" /></td>
                     <td align="left"><c:out value="${user.primarySkill}" /></td>
+                    <td align="left"><c:out value="${user.isMentor}" /></td>
+                    <td align="left">
+                        <c:if test="${not empty user.mentor}">
+                            <a href="${mentorUrl}">${user.mentor.name}</a>
+                        </c:if>
+                    </td>
                     <td align="left"><c:out value="${user.birthDay}" /></td>
                     <td align="left"><c:out value="${user.createDate}" /></td>
                     <td align="left"><c:out value="${user.createdByUserWithIp}" /></td>
@@ -71,6 +88,8 @@
     <c:when test="${user != null}">
         <h1>User</h1>
 
+        <a href="/welcome">Go on home page</a>
+        <br/>
         <a href="/users/get/all">View all users</a>
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead>
